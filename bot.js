@@ -402,7 +402,8 @@ function printBoard(GAME, message) {
     }
 
     let currentPlayerUsername = mention(currentPlayer);
-    let otherPlayerUsername = bot.users.get(otherPlayer).username;
+    let otherPlayerUsername = mention(otherPlayer);
+    //let otherPlayerUsername = bot.users.get(otherPlayer).username;
     boardString = GAME.getBoard();
 
     let turnString = currentPlayerUsername + "'s turn to play against " + otherPlayerUsername;
@@ -612,8 +613,7 @@ bot.on('message', function (message) {
                         break;
                     }
                 }
-                boardString = GAME.getBoard();
-                message.reply(boardString).catch(console.error);
+                printBoard(GAME, message);
                 break;
 
             case 'games':
